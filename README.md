@@ -21,4 +21,4 @@ Usage
 
 More information
 -----------------
-Check out http://developer.scopemedia.com/docs/similar-image-search/ for more information!
+Check out https://developer.scopemedia.com/documentation/ for more information!
