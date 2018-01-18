@@ -1,11 +1,24 @@
-# java-similarsearch-demo
-A simple example showing how the Similar Image Search API is used
-#How to get started
-Simply download this repo and open the project in your favourite IDE
-#Usage
-First you need to register at http://developer.scopemedia.com/.<br>
-When you are registered, create an application and you will receive your client ID and client Secret which you will use to authenticate your requests.<br>
-Open the DemoApplication.java file and replace 'CLIENT_ID', 'CLIENT_SECRET' and 'APPLICATION_ID' with your own.<br>
-Once you have your credentials set, using the demo app is very simple.<br>
-#More information
+java-similarsearch-demo
+=============================
+
+A simple java example showing how the Scope Java SDK is used
+
+Installation
+------------
+* Clone or download this repo and open the project in your favourite IDE
+
+If you want to use our Java SDK (recommended), need to do the following two steps:
+* Clone or download Java SDK at https://github.com/ScopeMediaInc/scopecheck-sdk-java 
+* install it to your local repository with 'gradle install'
+
+Usage
+------------
+* Register a free account at: https://api.scopemedia.com/#/signup
+* Create an application and you will receive your client ID and client Secret which you will use to authenticate your requests.
+* Open the ScopeSDKClientTestApp.java file and replace 'CLIENT_ID', 'CLIENT_SECRET' with your value
+* Prepare your testing image urls to test
+* You can also check ScopeApiTestApp.java to see how to use the API directly without using the java SDK
+
+More information
+-----------------
 Check out http://developer.scopemedia.com/docs/similar-image-search/ for more information!
