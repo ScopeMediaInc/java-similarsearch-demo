@@ -15,7 +15,7 @@ import java.util.Map;
  *
  */
 public class ScopeAPITestApp {
-    // change your YOUR CONFIGURATION 
+	//register and copy your client_id and client_secret here
     private static final String CLIENT_ID = null;
     private static final String CLIENT_SECRET = null;   
     
@@ -84,8 +84,7 @@ public class ScopeAPITestApp {
  
     		JSONArray mediaArray = new JSONArray(mediaList);
 
-        JSONObject params = new JSONObject();
-//        params.put("appId", APPLICATION_ID);       
+        JSONObject params = new JSONObject();    
         params.put("medias", mediaArray);
         
         OkHttpClient client = new OkHttpClient();
@@ -164,7 +163,6 @@ public class ScopeAPITestApp {
 			return;
 		}
         JSONObject params = new JSONObject();
-//        params.put("appId", APPLICATION_ID);
         params.put("base64", base64EncodedMediaData);
 
         OkHttpClient client = new OkHttpClient();

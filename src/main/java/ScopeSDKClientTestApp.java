@@ -2,7 +2,6 @@
  * 
  */
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.scopemedia.api.client.ScopeCheckBuilder;
@@ -26,8 +25,8 @@ import com.scopemedia.api.response.PredictionResponse;
 public class ScopeSDKClientTestApp {
 	//register and copy your client_id and client_secret here
     private static final String CLIENT_ID = null;
-    private static final String CLIENT_SECRET = null;    
-    
+    private static final String CLIENT_SECRET = null; 
+
     private static ScopeCheckClient client;
     
 	public static void main(String[] args) {
@@ -157,8 +156,8 @@ public class ScopeSDKClientTestApp {
 	private boolean printMediaResponse(MediaResponse response) {
 		if (response == null)
 			return false;
-		if (!response.getStatus().equals("OK")) {
-	    		System.out.println(response.getError());
+		if (response.getCode() != 200) {
+	    		System.out.println(response.getMessage());
 	    		return false;
 	    }
 	    Media[] mediaList = response.getMedias();
@@ -176,8 +175,8 @@ public class ScopeSDKClientTestApp {
 		System.out.println("-->getAvailablePredictionModels");
 		try {
 			ModelResponse response = client.getModels().performSync();
-			if (response == null || !response.getStatus().equals("OK")) {
-				System.out.println(response.getError());
+			if (response == null || response.getCode() != 200) {
+				System.out.println(response.getMessage());
 				return;
 			}
 			Model[] models = response.getModels();
@@ -202,8 +201,8 @@ public class ScopeSDKClientTestApp {
 
 		try {
 			PredictionResponse response = client.getPrediction(request).performSync();
-			if (response == null || !response.getStatus().equals("OK")) {
-				System.out.println(response.getError());
+			if (response == null || response.getCode() != 200) {
+				System.out.println(response.getMessage());
 				return;
 			}
 			Tag[] tags = response.getTags();
