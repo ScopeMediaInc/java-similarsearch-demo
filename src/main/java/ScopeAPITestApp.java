@@ -16,10 +16,10 @@ import java.util.Map;
  */
 public class ScopeAPITestApp {
 	//register and copy your client_id and client_secret here
-    private static final String CLIENT_ID = null;
-    private static final String CLIENT_SECRET = null;   
+	private static final String CLIENT_ID = "ukKxYOZL94oDmIiPOO5GfREQHLglY25gkttmhFurUmmHSNSW1srrIY0ErT6lB3Eo";
+	private static final String CLIENT_SECRET = "eWq0bU8j80R5b96YZmqfWNIYVugMj89m4P79qSKl4FyYiLMBQ23TuHf56gF9RrWh"; 
     
-    private static String TEST_IMAGE_URL = null; //set query image url
+    private static String TEST_IMAGE_URL = "https://cdn-images.farfetch-contents.com/11/60/37/69/11603769_7944724_1000.jpg"; //set query image url
     //
        
     private static final String SEARCH_BASE_URL = "https://api.scopemedia.com/search/v2";    
@@ -50,17 +50,17 @@ public class ScopeAPITestApp {
 //    			System.out.println("build image collection failed.");
 //    			return;
 //    		}
-//    		
-//    		//check the images indexed in my dataset
-//    		getImagesInDataCollection(0,20);
-//    		
-//        similarSearchByImageUrl(TEST_IMAGE_URL);
-//
-//        String encodedMediaFile = Utils.encodeImage(TEST_IMAGE_URL);
-//        similarSearchByImageData(encodedMediaFile);
-//    		
+    		
+    		//check the images indexed in my dataset
+    		getImagesInDataCollection(0,20);
+    		
+        similarSearchByImageUrl(TEST_IMAGE_URL);
+
+        String encodedMediaFile = Utils.encodeImage(TEST_IMAGE_URL);
+        similarSearchByImageData(encodedMediaFile);
+    		
     		getAvailablePredictionModels();
-//    		predictImageByUrl("fashion-v1", TEST_IMAGE_URL);
+    		predictImageByUrl("fashion-v1", TEST_IMAGE_URL);
     }
   
     /**

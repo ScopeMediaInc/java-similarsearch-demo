@@ -2,6 +2,7 @@
  * 
  */
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.scopemedia.api.client.ScopeCheckBuilder;
@@ -24,8 +25,8 @@ import com.scopemedia.api.response.PredictionResponse;
  */
 public class ScopeSDKClientTestApp {
 	//register and copy your client_id and client_secret here
-    private static final String CLIENT_ID = null;
-    private static final String CLIENT_SECRET = null; 
+    private static final String CLIENT_ID = "ukKxYOZL94oDmIiPOO5GfREQHLglY25gkttmhFurUmmHSNSW1srrIY0ErT6lB3Eo";
+    private static final String CLIENT_SECRET = "eWq0bU8j80R5b96YZmqfWNIYVugMj89m4P79qSKl4FyYiLMBQ23TuHf56gF9RrWh"; 
 
     private static ScopeCheckClient client;
     
@@ -37,30 +38,30 @@ public class ScopeSDKClientTestApp {
 		client = new ScopeCheckBuilder(CLIENT_ID, CLIENT_SECRET).build();
 		ScopeSDKClientTestApp testApp = new ScopeSDKClientTestApp();
 		
-//		//Before you can perform similar image search, 
-//		//you need to add images to your Application's image collection
+		//Before you can perform similar image search, 
+		//you need to add images to your Application's image collection
 //		List<String> myImageUrls = new ArrayList<String>();
 //		//@TODO add image urls to list myImageUrls
 //		testApp.addImagesToImageCollection(myImageUrls);
-//		
-////		//check the images added to your collection
-//		testApp.getImagesInDataCollection(0,20);
-// 
-//
-////		//@TODO set query image url
-//		String queryImageUrl = null; 
-//		//try similar image search api
-//		testApp.similarSearchByUrl(queryImageUrl);
-////
-////		//encode your image bytes with base64 
-//        String encodedMediaFile = Utils.encodeImage(queryImageUrl);
-//        testApp.similarSearchByImageData(encodedMediaFile);
-////		
-////		// check available prediction models
+		
+//		//check the images added to your collection
+		testApp.getImagesInDataCollection(0,20);
+ 
+
+		//@TODO set query image url
+		String queryImageUrl = "https://cdn-images.farfetch-contents.com/11/60/37/69/11603769_7944724_1000.jpg"; 
+		//try similar image search api
+		testApp.similarSearchByUrl(queryImageUrl);
+
+		//encode your image bytes with base64 
+        String encodedMediaFile = Utils.encodeImage(queryImageUrl);
+        testApp.similarSearchByImageData(encodedMediaFile);
+		
+		// check available prediction models
 		testApp.getAvailablePredictionModels();
-////		
-////		//Now let's try image prediction api
-//		testApp.predictImageByUrl("fashion-v1", queryImageUrl);
+		
+		//Now let's try image prediction api
+		testApp.predictImageByUrl("fashion-v1", queryImageUrl);
 	}
 
 	/**
