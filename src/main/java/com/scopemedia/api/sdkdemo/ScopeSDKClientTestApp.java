@@ -1,3 +1,4 @@
+package com.scopemedia.api.sdkdemo;
 /**
  * 
  */
@@ -5,8 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.scopemedia.api.client.ScopeCheckBuilder;
-import com.scopemedia.api.client.ScopeCheckClient;
+import com.scopemedia.api.client.ScopeAIBuilder;
+import com.scopemedia.api.client.ScopeAIClient;
+import com.scopemedia.api.demo.Utils;
 import com.scopemedia.api.dto.Media;
 import com.scopemedia.api.dto.Model;
 import com.scopemedia.api.dto.Tag;
@@ -28,14 +30,14 @@ public class ScopeSDKClientTestApp {
     private static final String CLIENT_ID = "ukKxYOZL94oDmIiPOO5GfREQHLglY25gkttmhFurUmmHSNSW1srrIY0ErT6lB3Eo";
     private static final String CLIENT_SECRET = "eWq0bU8j80R5b96YZmqfWNIYVugMj89m4P79qSKl4FyYiLMBQ23TuHf56gF9RrWh"; 
 
-    private static ScopeCheckClient client;
+    private static ScopeAIClient client;
     
 	public static void main(String[] args) {
 		if (CLIENT_ID == null || CLIENT_SECRET == null) {
 			System.out.println("Need to register a free account and get your Client Id and Clent Secret first.");
 			return;
 		}
-		client = new ScopeCheckBuilder(CLIENT_ID, CLIENT_SECRET).build();
+		client = new ScopeAIBuilder(CLIENT_ID, CLIENT_SECRET).build();
 		ScopeSDKClientTestApp testApp = new ScopeSDKClientTestApp();
 		
 		//Before you can perform similar image search, 
@@ -56,9 +58,6 @@ public class ScopeSDKClientTestApp {
 		//encode your image bytes with base64 
         String encodedMediaFile = Utils.encodeImage(queryImageUrl);
         testApp.similarSearchByImageData(encodedMediaFile);
-		
-		// check available prediction models
-		testApp.getAvailablePredictionModels();
 		
 		//Now let's try image prediction api
 		testApp.predictImageByUrl("fashion-v1", queryImageUrl);

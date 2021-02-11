@@ -1,14 +1,14 @@
 java-similarsearch-demo
 =============================
 
-A simple java example showing how the Scope Java SDK is used
+A simple java example showing how the ScopeAI API and Java SDK is used
 
 Installation
 ------------
 * Clone or download this repo and open the project in your favourite IDE
 
 If you want to use our Java SDK (recommended), need to do the following two steps:
-* Clone or download Java SDK at https://github.com/ScopeMediaInc/scopecheck-sdk-java 
+* Clone or download Java SDK at https://github.com/ScopeMediaInc/scopeai-sdk-java 
 * install it to your local repository with 'gradle install'
 
 Usage
@@ -21,4 +21,4 @@ Usage
 
 More information
 -----------------
-Check out https://developer.scopemedia.com/documentation/ for more information!
+Check out https://docs.scopemedia.com/ for more information!

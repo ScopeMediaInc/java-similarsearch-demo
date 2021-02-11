@@ -1,3 +1,4 @@
+package com.scopemedia.api.demo;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,8 +23,8 @@ public class ScopeAPITestApp {
     private static String TEST_IMAGE_URL = "https://cdn-images.farfetch-contents.com/11/60/37/69/11603769_7944724_1000.jpg"; //set query image url
     //
        
-    private static final String SEARCH_BASE_URL = "https://api.scopemedia.com/search/v2";    
-    private static final String TAG_BASE_URL = "https://api.scopemedia.com/tagging/v2";
+    private static final String SEARCH_BASE_URL = "https://api.scopemedia.com/simile/v2";    
+    private static final String TAG_BASE_URL = "https://api.scopemedia.com/tag/v2";
     
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static 	Map<String, String> headers = new HashMap<String, String>();
@@ -34,14 +35,14 @@ public class ScopeAPITestApp {
     		headers.put("Client-Secret", CLIENT_SECRET);
     }
     
-    public static void main(String[] args) {    		
-    		if (CLIENT_ID == null || CLIENT_SECRET == null) {
-    			System.out.println("Need to register a free account and get your Client Id and Clent Secret first.");
-    			return;
-    		}
-    		//add client_id and Client_Secret to request headers
-    		initializeHeaders();
-    		
+	public static void main(String[] args) {
+		if (CLIENT_ID == null || CLIENT_SECRET == null) {
+			System.out.println("Need to register a free account and get your Client Id and Clent Secret first.");
+			return;
+		}
+		// add client_id and Client_Secret to request headers
+		initializeHeaders();
+
 //    		//create an image collection by adding images with their urls
 //    		List<String> myImageUrls = new ArrayList<String>();
 //    		//myImageUrls.add("http://mydomain.com/image1.jpg");
@@ -50,59 +51,60 @@ public class ScopeAPITestApp {
 //    			System.out.println("build image collection failed.");
 //    			return;
 //    		}
-    		
-    		//check the images indexed in my dataset
-    		getImagesInDataCollection(0,20);
-    		
-        similarSearchByImageUrl(TEST_IMAGE_URL);
 
-        String encodedMediaFile = Utils.encodeImage(TEST_IMAGE_URL);
-        similarSearchByImageData(encodedMediaFile);
-    		
-    		getAvailablePredictionModels();
-    		predictImageByUrl("fashion-v1", TEST_IMAGE_URL);
-    }
+		// check the images indexed in my dataset
+		getImagesInDataCollection(0, 20);
+
+		similarSearchByImageUrl(TEST_IMAGE_URL);
+
+		String encodedMediaFile = Utils.encodeImage(TEST_IMAGE_URL);
+		similarSearchByImageData(encodedMediaFile);
+
+//		getAvailablePredictionModels();
+		predictImageByUrl("fashion-v1", TEST_IMAGE_URL);
+	}
   
     /**
      * Adding images to your image collection 
      * @param imageUrls
      * @return
      */
-    private static boolean addImagesToImageCollection(List<String> imageUrls) {
-    		System.out.println("-->addImagesToImageCollection");
-    		if (imageUrls == null || imageUrls.size() == 0) {
-    			System.out.println("empty image set.");
-    			return false;
-    		}
-    		
-    		List<JSONObject> mediaList = new ArrayList<JSONObject>(imageUrls.size());
-    		for (String imageUrl : imageUrls) {
-    			if (!Utils.exists(imageUrl))
-    				return false;
-    			mediaList.add(new JSONObject( new HashMap() {{ put("mediaUrl", imageUrl); }} ));
-    		}
- 
-    		JSONArray mediaArray = new JSONArray(mediaList);
+	private static boolean addImagesToImageCollection(List<String> imageUrls) {
+		System.out.println("-->addImagesToImageCollection");
+		if (imageUrls == null || imageUrls.size() == 0) {
+			System.out.println("empty image set.");
+			return false;
+		}
 
-        JSONObject params = new JSONObject();    
-        params.put("medias", mediaArray);
-        
-        OkHttpClient client = new OkHttpClient();
-        try {
-            RequestBody body = RequestBody.create(JSON, params.toString());
-            Request request = new Request.Builder()
-                    .url(SEARCH_BASE_URL + "/medias")
-                    .headers(Headers.of(headers))
-                    .post(body)
-                    .build();
-            Response response = client.newCall(request).execute();      
-            printMediaResponse(response);          
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
+		List<JSONObject> mediaList = new ArrayList<JSONObject>(imageUrls.size());
+		for (String imageUrl : imageUrls) {
+			if (!Utils.exists(imageUrl))
+				return false;
+			mediaList.add(new JSONObject(new HashMap() {
+				{
+					put("mediaUrl", imageUrl);
+				}
+			}));
+		}
+
+		JSONArray mediaArray = new JSONArray(mediaList);
+
+		JSONObject params = new JSONObject();
+		params.put("medias", mediaArray);
+
+		OkHttpClient client = new OkHttpClient();
+		try {
+			RequestBody body = RequestBody.create(JSON, params.toString());
+			Request request = new Request.Builder().url(SEARCH_BASE_URL + "/medias").headers(Headers.of(headers))
+					.post(body).build();
+			Response response = client.newCall(request).execute();
+			printMediaResponse(response);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
     
     /**
      * Check images in your collection
@@ -141,7 +143,7 @@ public class ScopeAPITestApp {
         try {
             RequestBody body = RequestBody.create(JSON, params.toString());
             Request request = new Request.Builder()
-                    .url(SEARCH_BASE_URL + "/similar")
+                    .url(SEARCH_BASE_URL + "/search")
                     .headers(Headers.of(headers))
                     .post(body)
                     .build();
@@ -169,7 +171,7 @@ public class ScopeAPITestApp {
         try {
             RequestBody body = RequestBody.create(JSON, params.toString());
             Request request = new Request.Builder()
-                    .url(SEARCH_BASE_URL + "/similar")
+                    .url(SEARCH_BASE_URL + "/search")
                     .headers(Headers.of(headers))
                     .post(body)
                     .build();
